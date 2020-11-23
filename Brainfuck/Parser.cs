@@ -35,8 +35,10 @@ namespace Brainfuck
                         currentLoop.Children.Add(new ExprAST(Token.Input));
                         break;
                     case Token.LoopOpen:
-                        var loop = new LoopAST();
-                        loop.Parent = currentLoop;
+                        var loop = new LoopAST
+                        {
+                            Parent = currentLoop
+                        };
                         currentLoop.Children.Add(loop);
                         currentLoop = loop;
                         break;

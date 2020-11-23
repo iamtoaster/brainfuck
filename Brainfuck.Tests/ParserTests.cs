@@ -12,14 +12,16 @@ namespace Brainfuck.Tests
         {
             var input = "+++-[-]";
             var tokens = Tokenizer.Tokenize(input);
-            RootAST expected = new RootAST();
-            expected.Children = new List<RootAST>( new RootAST[] { 
+            RootAST expected = new RootAST
+            {
+                Children = new List<RootAST>(new RootAST[] {
                 new ExprAST(Token.Plus),
                 new ExprAST(Token.Plus),
                 new ExprAST(Token.Plus),
                 new ExprAST(Token.Minus),
                 new LoopAST(new List<RootAST>(new RootAST[] { new ExprAST(Token.Minus) }))
-            });
+            })
+            };
 
             Assert.Equal(expected, Parser.Parse(tokens));
         }
