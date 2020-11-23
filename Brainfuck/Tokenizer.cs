@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Brainfuck
 {
-    class Tokenizer
+    public class Tokenizer
     {
-        enum Token
+        public enum Token
         {
             Plus,
             Minus,
@@ -18,9 +18,43 @@ namespace Brainfuck
             LoopClose
         }
 
-        List<Token> Tokenize(string text)
+        public static List<Token> Tokenize(string text)
         {
             List<Token> result = new List<Token>();
+            
+            foreach (char i in  text)
+            {
+                switch (i)
+                {
+                    case '+':
+                        result.Add(Token.Plus);
+                        break;
+                    case '-':
+                        result.Add(Token.Minus);
+                        break;
+                    case '>':
+                        result.Add(Token.PRight);
+                        break;
+                    case '<':
+                        result.Add(Token.PLeft);
+                        break;
+                    case '.':
+                        result.Add(Token.Output);
+                        break;
+                    case ',':
+                        result.Add(Token.Input);
+                        break;
+                    case '[':
+                        result.Add(Token.LoopOpen);
+                        break;
+                    case ']':
+                        result.Add(Token.LoopClose);
+                        break;
+
+                }
+            }
+
+            return result;
         }
     }
 }
